@@ -9,11 +9,15 @@ const TapahtumaList = () => {
     const [data, setData] = useState([])
     const [info, setInfo] = useState('');
     const token = localStorage.getItem('token');
-    const [summa, setSumma] = useState('');
+    const [osumma, setOSumma] = useState('');
+    const [o2summa, setO2Summa] = useState('');
+    const [hsumma, setHSumma] = useState('');
+    const [asumma, setASumma] = useState('');
+    
     
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true);
+            setLoading(true)
             try {
                 const { data: response } = await axios.get(apiURL + '/tapahtuma', {
                     headers: { "Authorization": `Bearer ${token}` } 
@@ -21,11 +25,21 @@ const TapahtumaList = () => {
                 setData(response);
                 //console.log("Dataaaa"+data);
                 //console.log(data[0].KESTO_TUNTEINA);
-                let s=0;
-                data.map(x => (s+=x.KESTO_TUNTEINA));
+                let o = 8;
+                let o2 = 9;
+                let h = 10;
+                let a = 11;
+                data.map(x => (o= o + x.OS_MAARA_YHTEENSA));
+                data.map(x => (o2= o2 + x.OS_MAARA_ALLE29));
+                data.map(x => (h= h + x.KESTO_TUNTEINA));
+                data.map(x => (a= a + x.AUTETTUJA));
                 //console.log(s)
-                setSumma(s);
-                console.log(s)
+
+                setOSumma(o);
+                setO2Summa(o2);
+                setHSumma(h);
+                setASumma(a);
+                //console.log(s);
             } catch (error) {
                 console.error(error.message);
                 setInfo("You need to login to see the books!");
@@ -57,7 +71,7 @@ const TapahtumaList = () => {
                             <td>{tapahtuma.AUTETTUJA}</td>
                         </tr> 
                     ))} 
-                    <tr><td colSpan="5"> Yht.</td><td>{summa}</td><td></td>
+                    <tr><td colSpan="3"> Yht.</td><td>{osumma}</td><td>{o2summa}</td><td>{hsumma}</td><td>{asumma}</td>
                     </tr>
                 </tbody>
             </table>
