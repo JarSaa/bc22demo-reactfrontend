@@ -32,7 +32,7 @@ function App() {
         <Route exact path="/login" element={<Login/>} />
         <Route exact path="/tapahtuma" element={<TapahtumaList/>} />
         <Route exact path="/booklist/selectedbook/:id" element={<SelectedBook/>} />
-        <Route exact path="/tapahtumalist/selectedtapahtuma/:id" element={<SelectedTapahtuma/>} />
+        <Route exact path="/tapahtuma/selectedtapahtuma/:id" element={<SelectedTapahtuma/>} />
         <Route exact path="/booklist/deletebook/:id" element={<DeleteBook/>} />
         <Route exact path="/addtapahtuma" element={<AddTapahtuma/>} />
       </Routes>

@@ -56,7 +56,7 @@ const TapahtumaList = () => {
             <table className='table table-bordered table-hover'>
                 <thead>
                     <tr>
-                        <th>Nro</th><th>Nimi</th><th>Pvm</th><th>Os. määrä yht.</th><th>Os. määrä alle 29v.</th><th>Kesto h</th><th>Autettuja</th>
+                        <th>Nro</th><th>Nimi</th><th>Pvm</th><th>Os. määrä yht.</th><th>Os. määrä alle 29v.</th><th>Kesto h</th><th>Autettuja</th><th>Muokkaa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,6 +69,10 @@ const TapahtumaList = () => {
                             <td>{tapahtuma.OS_MAARA_ALLE29}</td>
                             <td>{tapahtuma.KESTO_TUNTEINA}</td>
                             <td>{tapahtuma.AUTETTUJA}</td>
+                            <td><NavLink to={`SelectedTapahtuma/${tapahtuma.TAPAHTUMA_ID}`}>
+                                <button className="btn btn-primary">Select({tapahtuma.TAPAHTUMA_ID})</button>
+                                </NavLink>
+                            </td>
                         </tr> 
                     ))} 
                     <tr><td colSpan="3"> Yht.</td><td>{osumma}</td><td>{o2summa}</td><td>{hsumma}</td><td>{asumma}</td>
