@@ -3,10 +3,12 @@ import MyFunction from './MyFunction';
 import MyClass from './MyClass';
 import MyHook from './MyHook';
 import Login from './Login';
+import TapahtumaList from './TapahtumaList';
 import BookList from './BookList';
 import SelectedBook from './SelectedBook';
 import DeleteBook from './DeleteBook';
-import AddBook from './AddBook';
+import AddTapahtuma from './AddTapahtuma';
+import SelectedTapahtuma from './SelectedTapahtuma';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,7 +21,7 @@ function App() {
           <li> <Link to="/myclass">MyClass</Link> </li>
           <li> <Link to="/myhook">MyHook</Link>  </li>
           <li> <Link to="/login">Login</Link>  </li>
-          <li> <Link to="/booklist">Kirjat</Link>  </li>
+          <li> <Link to="/tapahtuma">Tapahtumat</Link>  </li>
         </ul>
         <hr />
       </div>
@@ -28,10 +30,11 @@ function App() {
         <Route exact path="/myclass" element={<MyClass fname="Teppo"/>} />
         <Route exact path="/myhook" element={<MyHook fname="Teppo"/>} />
         <Route exact path="/login" element={<Login/>} />
-        <Route exact path="/booklist" element={<BookList/>} />
+        <Route exact path="/tapahtuma" element={<TapahtumaList/>} />
         <Route exact path="/booklist/selectedbook/:id" element={<SelectedBook/>} />
+        <Route exact path="/tapahtumalist/selectedtapahtuma/:id" element={<SelectedTapahtuma/>} />
         <Route exact path="/booklist/deletebook/:id" element={<DeleteBook/>} />
-        <Route exact path="/addbook" element={<AddBook/>} />
+        <Route exact path="/addtapahtuma" element={<AddTapahtuma/>} />
       </Routes>
     </Router>
 
