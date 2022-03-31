@@ -78,6 +78,44 @@ const SelectedTapahtuma = (props) => {
              });
      }
 
+
+     const handleDeleteSubmit = () => {
+        setLoading(true);
+        setIsError(false);
+        const data = {
+            nimi: name,
+            pvm: pvm,
+            maara: maara,
+            maara29: o2maara,
+            uusia: umaara,
+            tunti: hmaara,
+            autettuja: amaara           
+        }
+        axios.delete(apiURL + '/tapahtuma/'+id, {
+            headers: { "Authorization": `Bearer ${token}` } 
+        })
+            .then(res => {
+                console.log(data)
+                setName('');
+                setPvm('');
+                setMaara('');
+                setO2Maara('');
+                setHMaara('');
+                setAMaara('');
+                setLoading(false);
+                return navigate("/tapahtuma");
+            }).catch(err => {
+                setLoading(false);
+                setIsError(true);
+            });
+    }
+
+
+
+
+
+
+
     return (
         <div className="container">
             <table border="1">
@@ -100,6 +138,7 @@ const SelectedTapahtuma = (props) => {
                     
                 </tbody>
             </table>
+            <button type="submit" onClick={handleDeleteSubmit}  disabled={loading}>Poista</button>
         </div>
     )
 }
