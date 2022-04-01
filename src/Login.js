@@ -86,34 +86,7 @@ function Login() {
     );
 
 
-    // return (
-    //     <div className="container">
-    //         <div style={{ maxWidth: 350 }}>
-    //             <label htmlFor="username">username </label>
-    //             <input
-    //                 type="text"
-    //                 id="username"
-    //                 //value={username}
-    //                 value={kayttajanimi}
-    //                 onChange={e => setUsername(e.target.value)} />
-    //             <br />
-    //             <label htmlFor="password">password </label>
-    //             <input
-    //                 type="text"
-    //                 id="password"
-    //                 //value={password}
-    //                 value={salasana}
-    //                 onChange={e => setPassword(e.target.value)} />
-    //             <br />
-    //             <button
-    //                 type="submit"
-    //                 onClick={handleSubmit}
-    //                 disabled={loading}
-    //             >Login</button>
-    //             {isError && <small>Something went wrong. Please try again later.</small>}
-    //         </div>
-    //     </div>
-    // );
+   
 }
 
 export default Login;

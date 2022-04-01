@@ -35,10 +35,10 @@ const TapahtumaList = () => {
                 let o2 = 9;
                 let h = 10;
                 let a = 11;
-                data.map(x => (o= o + x.OS_MAARA_YHTEENSA));
-                data.map(x => (o2= o2 + x.OS_MAARA_ALLE29));
-                data.map(x => (h= h + x.KESTO_TUNTEINA));
-                data.map(x => (a= a + x.AUTETTUJA));
+                data.map(x => (o= o + x.os_maara_yhteensa));
+                data.map(x => (o2= o2 + x.os_maara_alle29));
+                data.map(x => (h= h + x.kesto_tunteina));
+                data.map(x => (a= a + x.autettuja));
                 //console.log(s)
 
                 setOSumma(o);
@@ -74,7 +74,7 @@ const TapahtumaList = () => {
                             <td>{tapahtuma.os_maara_yhteensa}</td>
                             <td>{tapahtuma.os_maara_alle29}</td>
                             <td>{tapahtuma.kesto_tunteina}</td>
-                            <td>{tapahtuma.AUTETTUJA}</td>
+                            <td>{tapahtuma.autettuja}</td>
                             <td><NavLink to={`SelectedTapahtuma/${tapahtuma.tapahtuma_id}`}>
                                 <button className="btn btn-info">Valitse...</button>
                                 </NavLink>

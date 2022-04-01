@@ -30,14 +30,14 @@ const SelectedTapahtuma = (props) => {
                 })
                 //setIdBook(id);
                 SetTapahtumaId(id);
-                console.log(response.TAPAHTUMA_NIMI);
-                setName(response.TAPAHTUMA_NIMI);
-                setPvm(response.TAPAHTUMAN_PVM);
-                setMaara(response.OS_MAARA_YHTEENSA);
-                setO2Maara(response.OS_MAARA_ALLE29);
-                setUMaara(response.OS_MAARA_UUSIA);
-                setHMaara(response.KESTO_TUNTEINA);
-                setAMaara(response.AUTETTUJA);
+                console.log(response.tapahtuma_nimi);
+                setName(response.tapahtuma_nimi);
+                setPvm(response.tapahtuman_pvm);
+                setMaara(response.os_maara_yhteensa);
+                setO2Maara(response.os_maara_alle29);
+                setUMaara(response.os_maara_uusia);
+                setHMaara(response.kesto_tunteina);
+                setAMaara(response.autettuja);
                 console.log(response);
             } catch (error) {
                 console.error(error.message);
