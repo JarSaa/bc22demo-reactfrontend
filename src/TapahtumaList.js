@@ -68,14 +68,14 @@ const TapahtumaList = () => {
                 <tbody>
                      {data.map(tapahtuma => (
                             <tr key={tapahtuma.tapahtuma_id}>
-                            <td>{tapahtuma.TAPAHTUMA_ID}</td>
-                            <td>{tapahtuma.TAPAHTUMA_NIMI}</td>
-                            <td>{tapahtuma.TAPAHTUMAN_PVM}</td>
-                            <td>{tapahtuma.OS_MAARA_YHTEENSA}</td>
-                            <td>{tapahtuma.OS_MAARA_ALLE29}</td>
-                            <td>{tapahtuma.KESTO_TUNTEINA}</td>
+                            <td>{tapahtuma.tapahtuma_id}</td>
+                            <td>{tapahtuma.tapahtuma_nimi}</td>
+                            <td>{tapahtuma.tapahtuman_pvm}</td>
+                            <td>{tapahtuma.os_maara_yhteensa}</td>
+                            <td>{tapahtuma.os_maara_alle29}</td>
+                            <td>{tapahtuma.kesto_tunteina}</td>
                             <td>{tapahtuma.AUTETTUJA}</td>
-                            <td><NavLink to={`SelectedTapahtuma/${tapahtuma.TAPAHTUMA_ID}`}>
+                            <td><NavLink to={`SelectedTapahtuma/${tapahtuma.tapahtuma_id}`}>
                                 <button className="btn btn-info">Valitse...</button>
                                 </NavLink>
                             </td>
