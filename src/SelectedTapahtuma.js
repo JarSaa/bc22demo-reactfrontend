@@ -71,6 +71,7 @@ const SelectedTapahtuma = (props) => {
                  setHMaara('');
                  setAMaara('');
                  setLoading(false);
+                 window.location.reload();
                  //return navigate("/tapahtumalist");
              }).catch(err => {
                  setLoading(false);
@@ -79,9 +80,25 @@ const SelectedTapahtuma = (props) => {
      }
 
 
+
+     const handleDeleteVarmistus = () => {
+        setLoading(true);
+        setIsError(false);
+        let txt = "a"
+        if (window.confirm("Poistetaanko tapahtuma?")) {
+            handleDeleteSubmit()
+          } else {
+            window.location.reload();
+          }                  
+        
+    }
+
+
+
      const handleDeleteSubmit = () => {
         setLoading(true);
         setIsError(false);
+        
         const data = {
             nimi: name,
             pvm: pvm,
@@ -133,12 +150,12 @@ const SelectedTapahtuma = (props) => {
                             <td><input type="text" id="o2maara" value={o2maara} onChange={e => setO2Maara(e.target.value)} /></td>
                             <td><input type="text" id="hmaara" value={hmaara} onChange={e => setHMaara(e.target.value)} /></td>
                             <td><input type="text" id="amaara" value={amaara} onChange={e => setAMaara(e.target.value)} /></td>
-                            <td><button type="submit" onClick={handleSubmit}  disabled={loading}>Update</button></td>
+                            <td><button className='btn btn-warning' onClick={handleSubmit}  disabled={loading}>Update</button></td>
                         </tr>
                     
                 </tbody>
             </table>
-            <button type="submit" onClick={handleDeleteSubmit}  disabled={loading}>Poista</button>
+            <br></br><button className='btn btn-danger' onClick={handleDeleteVarmistus}  disabled={loading}>Poista</button>
         </div>
     )
 }

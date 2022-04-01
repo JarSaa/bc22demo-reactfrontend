@@ -2,11 +2,11 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import apiURL from './myURL';
+import { useParams } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-const TapahtumaList = () => {
+const PreYearTapahtumaList  = (props) => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([])
     const [info, setInfo] = useState('');
@@ -15,22 +15,20 @@ const TapahtumaList = () => {
     const [o2summa, setO2Summa] = useState('');
     const [hsumma, setHSumma] = useState('');
     const [asumma, setASumma] = useState('');
-       
-         
+    const {year_id}=useParams();
+    //const navigate=useNavigate();
+    
     
     useEffect(() => {
         const fetchData = async () => {
-            
             setLoading(true)
-            //console.log(year_id)
+            console.log("Moi " + year_id)
             try {
-                const { data: response } = await axios.get(apiURL + '/tapahtuma', {
-                   headers: { "Authorization": `Bearer ${token}` } 
-                //    const { data: response } = await axios.get(apiURL + '/yeartapahtuma/'+year_id, {
-                //        headers: { "Authorization": `Bearer ${token}` } 
+                const { data: response } = await axios.get(apiURL + '/preyeartapahtuma', {
+                    headers: { "Authorization": `Bearer ${token}` }                
                 })
                 setData(response);
-                //console.log(data[0].KESTO_TUNTEINA);
+               
                 let o = 8;
                 let o2 = 9;
                 let h = 10;
@@ -58,6 +56,7 @@ const TapahtumaList = () => {
     return (
         <div className="container">
             <Link to='/addtapahtuma'><button className='btn btn-success'>Uusi tapahtuma</button></Link>
+            
             <br/> <br/>
             <table className='table table-bordered table-hover'>
                 <thead>
@@ -75,7 +74,7 @@ const TapahtumaList = () => {
                             <td>{tapahtuma.OS_MAARA_ALLE29}</td>
                             <td>{tapahtuma.KESTO_TUNTEINA}</td>
                             <td>{tapahtuma.AUTETTUJA}</td>
-                            <td><NavLink to={`SelectedTapahtuma/${tapahtuma.TAPAHTUMA_ID}`}>
+                            <td><NavLink to={`../tapahtuma/SelectedTapahtuma/${tapahtuma.TAPAHTUMA_ID}`}>
                                 <button className="btn btn-info">Valitse...</button>
                                 </NavLink>
                             </td>
@@ -97,4 +96,4 @@ const TapahtumaList = () => {
 
 
 
-export default TapahtumaList;
+export default PreYearTapahtumaList;

@@ -5,8 +5,7 @@ import apiURL from './myURL';
 import { NavLink, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-const TapahtumaList = () => {
+const CurYearTapahtumaList = () => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([])
     const [info, setInfo] = useState('');
@@ -15,21 +14,20 @@ const TapahtumaList = () => {
     const [o2summa, setO2Summa] = useState('');
     const [hsumma, setHSumma] = useState('');
     const [asumma, setASumma] = useState('');
-       
          
     
     useEffect(() => {
         const fetchData = async () => {
-            
             setLoading(true)
             //console.log(year_id)
             try {
-                const { data: response } = await axios.get(apiURL + '/tapahtuma', {
+                const { data: response } = await axios.get(apiURL + '/curyeartapahtuma', {
                    headers: { "Authorization": `Bearer ${token}` } 
                 //    const { data: response } = await axios.get(apiURL + '/yeartapahtuma/'+year_id, {
                 //        headers: { "Authorization": `Bearer ${token}` } 
                 })
                 setData(response);
+                //console.log("Dataaaa"+data);
                 //console.log(data[0].KESTO_TUNTEINA);
                 let o = 8;
                 let o2 = 9;
@@ -75,7 +73,7 @@ const TapahtumaList = () => {
                             <td>{tapahtuma.OS_MAARA_ALLE29}</td>
                             <td>{tapahtuma.KESTO_TUNTEINA}</td>
                             <td>{tapahtuma.AUTETTUJA}</td>
-                            <td><NavLink to={`SelectedTapahtuma/${tapahtuma.TAPAHTUMA_ID}`}>
+                            <td><NavLink to={`../tapahtuma/SelectedTapahtuma/${tapahtuma.TAPAHTUMA_ID}`}>
                                 <button className="btn btn-info">Valitse...</button>
                                 </NavLink>
                             </td>
@@ -93,8 +91,4 @@ const TapahtumaList = () => {
 
 }
 
-
-
-
-
-export default TapahtumaList;
+export default CurYearTapahtumaList;
