@@ -10,11 +10,16 @@ const CurYearTapahtumaList = () => {
     const [data, setData] = useState([])
     const [info, setInfo] = useState('');
     const token = localStorage.getItem('token');
-    const [osumma, setOSumma] = useState('');
-    const [o2summa, setO2Summa] = useState('');
-    const [hsumma, setHSumma] = useState('');
-    const [asumma, setASumma] = useState('');
-         
+    const [osumma, setOSumma] = useState();
+    const [o2summa, setO2Summa] = useState();
+    const [hsumma, setHSumma] = useState();
+    const [asumma, setASumma] =useState();
+    
+    // var o = 0;
+    // var o2 = 0;
+    // var h = 0;
+    // var a = 0;  
+    //var a = 0;     
     
     useEffect(() => {
         const fetchData = async () => {
@@ -27,22 +32,24 @@ const CurYearTapahtumaList = () => {
                 //        headers: { "Authorization": `Bearer ${token}` } 
                 })
                 setData(response);
-                //console.log("Dataaaa"+data);
+
+                
+                //console.log("Dataaaa"+data)
                 //console.log(data[0].KESTO_TUNTEINA);
                 let o = 8;
                 let o2 = 9;
                 let h = 10;
-                let a = 11;
-                data.map(x => (o= o + x.os_maara_yhteensa));
-                data.map(x => (o2= o2 + x.os_maara_alle29));
-                data.map(x => (h= h + x.kesto_tunteina));
-                data.map(x => (a= a + x.autettuja));
-                //console.log(s)
+                let a = 0;
+                data.map(x => (setOSumma(o+x.os_maara_yhteensa)));
+                data.map(x => (setO2Summa(o2 + x.os_maara_alle29)));
+                data.map(x => (setHSumma(h + x.kesto_tunteina)));
+                data.map(x => (setASumma( a + x.autettuja)));
+                console.log(a)
 
-                setOSumma(o);
-                setO2Summa(o2);
-                setHSumma(h);
-                setASumma(a);
+                //setOSumma(o);
+                // setO2Summa(o2);
+                // setHSumma(h);
+                // setASumma(a);
                 //console.log(s);
             } catch (error) {
                 console.error(error.message);
@@ -55,7 +62,7 @@ const CurYearTapahtumaList = () => {
 
     return (
         <div className="container">
-            <Link to='/addtapahtuma'><button className='btn btn-success'>Uusi tapahtuma</button></Link>
+            <Link to='/addtapahtuma'><button className='btn btn-success'>Uusi tapahtuma...</button></Link>
             <br/> <br/>
             <table className='table table-bordered table-hover'>
                 <thead>
@@ -73,7 +80,7 @@ const CurYearTapahtumaList = () => {
                             <td>{tapahtuma.os_maara_alle29}</td>
                             <td>{tapahtuma.kesto_tunteina}</td>
                             <td>{tapahtuma.autettuja}</td>
-                             <td><NavLink to={`../tapahtuma/SelectedTapahtuma/${tapahtuma.TAPAHTUMA_ID}`}>
+                             <td><NavLink to={`../tapahtuma/SelectedTapahtuma/${tapahtuma.tapahtuma_id}`}>
                                 <button className="btn btn-info">Valitse...</button>
                                 </NavLink>
                             </td>

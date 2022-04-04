@@ -15,16 +15,20 @@ const TapahtumaList = () => {
     const [o2summa, setO2Summa] = useState('');
     const [hsumma, setHSumma] = useState('');
     const [asumma, setASumma] = useState('');
-       
-         
+    const [vuosi, setVuosi] = useState('all');   
     
+
+       
     useEffect(() => {
+    
         const fetchData = async () => {
             
             setLoading(true)
             //console.log(year_id)
             try {
-                const { data: response } = await axios.get(apiURL + '/tapahtuma', {
+                let url=apiURL + '/tapahtuma/year/'+vuosi;
+                console.log(url)
+                const { data: response } = await axios.get(apiURL + '/tapahtuma/year/'+vuosi, {
                    headers: { "Authorization": `Bearer ${token}` } 
                 //    const { data: response } = await axios.get(apiURL + '/yeartapahtuma/'+year_id, {
                 //        headers: { "Authorization": `Bearer ${token}` } 
@@ -55,10 +59,18 @@ const TapahtumaList = () => {
         fetchData();
     }, []);
 
+    
+
     return (
         <div className="container">
-            <Link to='/addtapahtuma'><button className='btn btn-success'>Uusi tapahtuma</button></Link>
+            <Link to='/addtapahtuma'><button className='btn btn-success'>Uusi tapahtuma...</button></Link>
             <br/> <br/>
+        <select onChange={e=>setVuosi(e.target.value)} value={vuosi}> 
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+        </select>
+     
+{vuosi}
             <table className='table table-bordered table-hover'>
                 <thead>
                     <tr>

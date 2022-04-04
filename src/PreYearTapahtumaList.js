@@ -11,16 +11,17 @@ const PreYearTapahtumaList  = (props) => {
     const [data, setData] = useState([])
     const [info, setInfo] = useState('');
     const token = localStorage.getItem('token');
-    const [osumma, setOSumma] = useState('');
-    const [o2summa, setO2Summa] = useState('');
-    const [hsumma, setHSumma] = useState('');
-    const [asumma, setASumma] = useState('');
+    const [osumma, setOSumma] = useState([]);
+    const [o2summa, setO2Summa] = useState([]);
+    const [hsumma, setHSumma] = useState([]);
+    const [asumma, setASumma] = useState();
     const {year_id}=useParams();
+    //const navigate=useNavigate();
     //const navigate=useNavigate();
     
     
     useEffect(() => {
-        const fetchData = async () => {
+            const fetchData = async () => {
             setLoading(true)
             console.log("Moi " + year_id)
             try {
@@ -29,16 +30,17 @@ const PreYearTapahtumaList  = (props) => {
                 })
                 setData(response);
                
-                let o = 8;
-                let o2 = 9;
-                let h = 10;
-                let a = 11;
-                data.map(x => (o= o + x.os_maara_yhteensa));
+                let o = 0;
+                let o2 = 0;
+                let h = 0;
+                let a = 0;
+                data.map(x => (o+=x.os_maara_yhteensa));
                 data.map(x => (o2= o2 + x.os_maara_alle29));
                 data.map(x => (h= h + x.kesto_tunteina));
                 data.map(x => (a= a + x.autettuja));
                 //console.log(s)
 
+                       
                 setOSumma(o);
                 setO2Summa(o2);
                 setHSumma(h);
@@ -55,7 +57,7 @@ const PreYearTapahtumaList  = (props) => {
 
     return (
         <div className="container">
-            <Link to='/addtapahtuma'><button className='btn btn-success'>Uusi tapahtuma</button></Link>
+            <Link to='/addtapahtuma'><button className='btn btn-success'>Uusi tapahtuma...</button></Link>
             
             <br/> <br/>
             <table className='table table-bordered table-hover'>
@@ -74,13 +76,14 @@ const PreYearTapahtumaList  = (props) => {
                              <td>{tapahtuma.os_maara_alle29}</td>
                              <td>{tapahtuma.kesto_tunteina}</td>
                              <td>{tapahtuma.autettuja}</td>
-                             <td><NavLink to={`../tapahtuma/SelectedTapahtuma/${tapahtuma.TAPAHTUMA_ID}`}>
+                             <td><NavLink to={`../tapahtuma/SelectedTapahtuma/${tapahtuma.tapahtuma_id}`}>
                                 <button className="btn btn-info">Valitse...</button>
                                 </NavLink>
                             </td>
                         </tr> 
                     ))} 
                     <tr><td colSpan="3"> Yht.</td><td>{osumma}</td><td>{o2summa}</td><td>{hsumma}</td><td>{asumma}</td>
+                    
                     </tr>
                 </tbody>
             </table>

@@ -65,7 +65,8 @@ function Login() {
                 <div className='form-group'>
                     <label htmlFor="password">password </label>
                     <input className='form-control'
-                        type="text"
+                        //type="text"
+                        type="password"
                         id="password"
                         value={salasana}
                         //value={password}
